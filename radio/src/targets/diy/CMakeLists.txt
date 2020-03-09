@@ -13,8 +13,10 @@ set(BITMAPS_TARGET taranis_bitmaps)
 set(FONTS_TARGET taranis_fonts)
 set(LCD_DRIVER lcd_driver_spi.cpp)
 set(GVAR_SCREEN model_gvars.cpp)
-option(INTERNAL_MODULE_PXX1 "Support for PXX1 internal module" ON)
-option(INTERNAL_MODULE_PXX2 "Support for PXX2 internal module" OFF)
+set(INTERNAL_MODULE_PXX1 OFF)
+set(INTERNAL_MODULE_PXX2 OFF)
+option(INTERNAL_MODULE_MULTI "Support for PXX2 internal module" OFF)
+
 set(FLAVOUR x9d+)
 set(CPU_TYPE STM32F2)
 set(CPU_TYPE_FULL STM32F205xE)  # for size report

@@ -421,8 +421,32 @@
 #define GYRO_RCC_AHB1Periph           0
 #define GYRO_RCC_APB1Periph           0
 
-// SD -- no sdcard
+// SD - SPI2
+#define SD_RCC_AHB1Periph               (RCC_AHB1Periph_GPIOD | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_DMA1)
+#define SD_RCC_APB1Periph               RCC_APB1Periph_SPI2
+#define SD_GPIO_PRESENT_GPIO            GPIOD
+#define SD_GPIO_PRESENT_GPIO_PIN        GPIO_Pin_9  // PD.09
+#define SD_GPIO                         GPIOB
+#define SD_GPIO_PIN_CS                  GPIO_Pin_12 // PB.12
+#define SD_GPIO_PIN_SCK                 GPIO_Pin_13 // PB.13
+#define SD_GPIO_PIN_MISO                GPIO_Pin_14 // PB.14
+#define SD_GPIO_PIN_MOSI                GPIO_Pin_15 // PB.15
+#define SD_GPIO_AF                      GPIO_AF_SPI2
+#define SD_GPIO_PinSource_CS            GPIO_PinSource12
+#define SD_GPIO_PinSource_SCK           GPIO_PinSource13
+#define SD_GPIO_PinSource_MISO          GPIO_PinSource14
+#define SD_GPIO_PinSource_MOSI          GPIO_PinSource15
+#define SD_SPI                          SPI2
+#define SD_SPI_BaudRatePrescaler        SPI_BaudRatePrescaler_4 // 10.5<20MHZ, make sure < 20MHZ
 
+#if !defined(BOOT)
+  #define SD_USE_DMA                    // Enable the DMA for SD
+  #define SD_DMA_Stream_SPI_RX          DMA1_Stream3
+  #define SD_DMA_Stream_SPI_TX          DMA1_Stream4
+  #define SD_DMA_FLAG_SPI_TC_RX         DMA_FLAG_TCIF3
+  #define SD_DMA_FLAG_SPI_TC_TX         DMA_FLAG_TCIF4
+  #define SD_DMA_Channel_SPI            DMA_Channel_0
+#endif
 
 // Audio
 #define AUDIO_RCC_APB1Periph            (RCC_APB1Periph_TIM6 | RCC_APB1Periph_DAC)
